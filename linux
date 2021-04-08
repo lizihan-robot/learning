@@ -1,0 +1,25 @@
+linux相关:
+	systemctl:
+		systemctl enable：设置下次开机时，后面接的 unit 会被启动。
+		systemctl disable：设置下次开机时，后面接的 unit 不会被启动。
+		systemctl is-enable：开机时有没有默认要启用这个 unit
+	supervisor：
+		安装supervisor，sudo apt-get install supervisor
+		找一个xyz_autostart.server文件 拷贝到/lib/systemd/system/目录下  sudo cp /path/to/xyz_autostart.service /lib/systemd/system
+		启动xyz_autostart服务
+			先关闭原supervisor的自启
+				$ sudo systemctl is-enabled supervisor.service
+				$ sudo systemctl disable supervisor.service
+				$ sudo systemctl is-enabled supervisor.service
+				显示disabled表示已经成功取消自启
+			把xyz_autostart.service设为自启
+				sudo systemctl enable xyz_autostart.service
+				sudo systemctl is-enabled xyz_autostart.service
+				显示enabled表示已经成功设为自启
+			查看supervisor的状态
+				ps -ef | grep supervisord访问127.0.0.1:9001
+				登录密码在supervisord.conf中,看每个节点是否能启动
+		
+	vim：
+		shift+G 直接跳到最后一行
+		有时候弹出提示框，需要输入-R覆盖

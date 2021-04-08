@@ -1,0 +1,59 @@
+
+struct :
+		pack和unpack
+		发送端使用pack打包       i = 6
+        	    			f = [1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7]
+        	    			s = struct.pack('i5sfffffff',i,com,f[0],f[1],f[2],f[3],f[4],f[5],f[6])
+		接受端使用       data = conn.recv(1024)
+        	    		res_unpack = struct.unpack('i5sfffffff',data)
+	
+marshmallow: 	
+		用于将复杂的数据类型（例如对象）与本机的python数据类型之间进行转换
+		`验证输入数据
+		`将输入数据饭序列化成为应用程序级对象
+		`将应用程序级对象序列化为原始python类型，然后可以将序列化的对象呈现为标准格式，例如json，以用于HTTP API
+	
+epoll:
+		对select方法进行了封装
+		用于监控socket发生事件
+		例如监控可读事件，可写事件，错误事件，断开事件的发生
+		https://blog.csdn.net/wuchuanpingstone/article/details/82964256
+
+thread:
+		thread.join()
+				优先将多线程运行完了之后才会运行后面的程序
+Queue：
+		from Queue import Queue,LifoQueue,PriorityQueue
+						# Queue是指先入先出
+						# LifoQueue是指后入先出
+						# PriorityQueue优先级队列
+		q=Queue(maxsize=5)		# 先进先出队列
+		lq=LifoQueue(maxsize=6)		# 后进先出队列
+		pq=PriorityQueue(maxsize=5)	# 优先级队列
+		q.qsize() 返回队列的大小
+		q.empty() 如果队列为空，返回True,反之False
+		q.full() 如果队列满了，返回True,反之False，Queue.full 与 maxsize 大小对应
+		q.get([block[, timeout]])获取队列，timeout等待时间
+		q.get_nowait() 相当于Queue.get(False)，非阻塞方法
+		q.put(item) 写入队列，timeout等待时间
+		q.task_done() 在完成一项工作之后，Queue.task_done()函数向任务已经完成的队列发送一个信号。每个get()调用得到一个任务，
+				接下来task_done()调用告诉队列该任务已经处理完毕。
+		Queue.join() 实际上意味着等到队列为空，再执行别的操作
+
+		
+requests.request():
+		res = requests.request('GET', url, **kwargs)	#阻塞式返回，一直阻塞到有返回值或者timeout选项
+		print(res) 
+	
+Marshmallow:
+	序列化和反序列化操作
+
+	序列化：
+		使用Schema中的dump()方法实现 obj->dict，
+		使用Schema中的dumps()方法实现 obj->string，
+		可以使用only和exclude过滤输出
+	反序列化：
+		使用Schema中的load()方法实现 dict->obj，
+		使用Schema中的load()方法实现 string->obj，
+
+

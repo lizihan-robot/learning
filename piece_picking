@@ -1,0 +1,10 @@
+piece_picking框架相关：
+	http_app中建立flask框架，获取request请求，然后建立一个socket将请求信息回传并且告诉前端，前端拿到请求后再发送给System_manager，
+	拿到一个new_batch后先调用前端read。前端再调用system_manager.read()核对batch信息。核对信息成功后会将batch放入队列中（Queue先入先出类型队列）。
+	然后等待start按钮，runbatch
+
+安装数据库安装相关：
+	1.sudo apt-get install mysql-client
+	2.sudo apt-get install mysql-server
+	3.	->输入密码：xyz123456
+	4. 运行数据库：mysql -u root -p xyz123456
