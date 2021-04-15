@@ -20,14 +20,8 @@ epoll:
 		https://blog.csdn.net/wuchuanpingstone/article/details/82964256
 
 thread:
-		thread = Thread(targer=pmd,args=(s,))
 		thread.join()
 				优先将多线程运行完了之后才会运行后面的程序
-		thread.setDaemon(True/False)
-				如果某个子线程的daemon属性为False，主线程结束时会检测该子线程是否结束，如果该子线程还在运行，则主线程会等待它完成后再退出；
-				如果某个子线程的daemon属性为True，主线程运行结束时不对这个子线程进行检查而直接退出，同时所有daemon值为True的子线程将随主线程一起结束，而不论是否运行完成。
-				属性daemon的值默认为False，如果需要修改，必须在调用start()方法启动线程之前进行设置。
-				
 Queue：
 		from Queue import Queue,LifoQueue,PriorityQueue
 						# Queue是指先入先出
@@ -61,5 +55,70 @@ Marshmallow:
 	反序列化：
 		使用Schema中的load()方法实现 dict->obj，
 		使用Schema中的load()方法实现 string->obj，
+
+json:
+	dump():
+		json文件写入
+	load():
+		json文件读取
+	dumps():
+		将字典类型转化为json类型
+	loads():
+		将json类型转化为字典类型
+
+copy:
+	copy.copy():
+		还是指向之前的对象
+	copy.deepcopy():
+		copy出一个新的对象
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
