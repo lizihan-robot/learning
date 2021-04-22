@@ -20,7 +20,13 @@ epoll:
 		https://blog.csdn.net/wuchuanpingstone/article/details/82964256
 
 thread:
-		thread.join()
+		t1 = threading.Thread(target=["需要启动的函数名字"],args=["函数需要传的参数"])
+				创建
+		t1..setDaemon(True)
+				把所有的子线程都变成了主线程的守护线程，主线程不等待该守护线程的执行完再去关闭
+		t1.start()
+				开启
+		t1.join()
 				优先将多线程运行完了之后才会运行后面的程序
 Queue：
 		from Queue import Queue,LifoQueue,PriorityQueue
