@@ -50,6 +50,9 @@ Queue：
 requests.request():
 		res = requests.request('GET', url, **kwargs)	#阻塞式返回，一直阻塞到有返回值或者timeout选项
 		print(res) 
+flask():
+		from flask import request
+		res= request.get_json()
 	
 Marshmallow:
 	序列化和反序列化操作
