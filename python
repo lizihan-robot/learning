@@ -22,7 +22,7 @@ epoll:
 thread:
 		t1 = threading.Thread(target=["需要启动的函数名字"],args=["函数需要传的参数"])
 				创建
-		t1..setDaemon(True)
+		t1.setDaemon(True)
 				把所有的子线程都变成了主线程的守护线程，主线程不等待该守护线程的执行完再去关闭
 		t1.start()
 				开启
@@ -81,12 +81,68 @@ copy:
 	copy.deepcopy():
 		copy出一个新的对象
 
+map():
+	map(func,msg)
+	将msg中所有的数传入func中，得到返回值
+	def square(x) :            # 计算平方数
+	...     return x ** 2
+	...
+	>>> map(square, [1,2,3,4,5])   # 计算列表各个元素的平方
+	[1, 4, 9, 16, 25]
+
+round():
+	round(3.1415926,1)
+	四舍五如小数点后面1位数
+
+getattr():
+	getattr(object, name[, default])
+	>>>class A(object):
+        bar = 1 
+	>>> a = A()
+	>>> getattr(a, 'bar')        # 获取属性 bar 值
+	1
+	>>> getattr(a, 'bar2')       # 属性 bar2 不存在，触发异常
+	Traceback (most recent call last):
+	  File "<stdin>", line 1, in <module>
+	AttributeError: 'A' object has no attribute 'bar2'
+	>>> getattr(a, 'bar2', 3)    # 属性 bar2 不存在，但设置了默认值
+	3
+	>>>
+
+importlib.import_module():
+	params = importlib.import_module('b.c.c') #绝对导入
+	params_ = importlib.import_module('.c.c',package='b') #相对导入
+	# 对象中取出需要的对象
+	params.args #取出变量
+	params.C  #取出class C
+	params.C.c  #取出class C 中的c 方法
 
 
 
 
+如何分别实现TCP与UDP ?  socket.socket()创建的是基于哪一种协议的socket对象？
+	
+
+TCP/IP协议的三次握手与四次挥手分别封装在socket对象的哪两个方法中？
 
 
+conn.recv(1024)时如果缓存区数据长度不超过1024会如何？
+	如果大于1024返回1024,小于1024,是多少就返回多少
+
+当使用TCP/IP协议的socket链接断开时， 服务端与客户端分别调用recv和send的结果是什么？(服务端/客户端关闭， 选择服务端/客户端做后续测试， 测试recv/send, 排列组合一共8种情形需要分析)
+	
+
+在某种场景下， 使用TCP/IP协议的连接发送消息时,遵守的协议之一是用”$$”来分割两段消息， 如果用conn.recv(2)来接收消息， 请问如何保证在处理消息时（比如将消息写入文件中， 每条消息占一行）不重复， 不遗漏，不残缺， 并且及时？
+
+
+什么是长连接什么是短连接？
+
+
+需要长连接时， 什么条件下需要考虑断线重连， 什么时候不需要考虑？
+
+
+如何实现TCP/IP协议服务器同时与多个客户端通信？
+	多线程或者socketserver
 
 
 
