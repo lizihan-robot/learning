@@ -1,27 +1,47 @@
-linux相关:
-	systemctl:
-		systemctl enable：设置下次开机时，后面接的 unit 会被启动。
-		systemctl disable：设置下次开机时，后面接的 unit 不会被启动。
-		systemctl is-enable：开机时有没有默认要启用这个 unit
-	supervisor：
-		安装supervisor，sudo apt-get install supervisor
-		找一个xyz_autostart.server文件 拷贝到/lib/systemd/system/目录下  sudo cp /path/to/xyz_autostart.service /lib/systemd/system
-		启动xyz_autostart服务
-			先关闭原supervisor的自启
-				$ sudo systemctl is-enabled supervisor.service
-				$ sudo systemctl disable supervisor.service
-				$ sudo systemctl is-enabled supervisor.service
-				显示disabled表示已经成功取消自启
-			把xyz_autostart.service设为自启
-				sudo systemctl enable xyz_autostart.service
-				sudo systemctl is-enabled xyz_autostart.service
-				显示enabled表示已经成功设为自启
-			查看supervisor的状态
-				ps -ef | grep supervisord访问127.0.0.1:9001
-				登录密码在supervisord.conf中,看每个节点是否能启动
-		
-	vim：
-		shift+G 直接跳到最后一行
-		有时候弹出提示框，需要输入-R覆盖
+systemctl:
+	systemctl enable：设置下次开机时，后面接的 unit 会被启动。
+	systemctl disable：设置下次开机时，后面接的 unit 不会被启动。
+	systemctl is-enable：开机时有没有默认要启用这个 unit
+supervisor：
+	安装supervisor，sudo apt-get install supervisor
+	找一个xyz_autostart.server文件 拷贝到/lib/systemd/system/目录下  sudo cp /path/to/xyz_autostart.service /lib/systemd/system
+	启动xyz_autostart服务
+		先关闭原supervisor的自启
+			$ sudo systemctl is-enabled supervisor.service
+			$ sudo systemctl disable supervisor.service
+			$ sudo systemctl is-enabled supervisor.service
+			显示disabled表示已经成功取消自启
+		把xyz_autostart.service设为自启
+			sudo systemctl enable xyz_autostart.service
+			sudo systemctl is-enabled xyz_autostart.service
+			显示enabled表示已经成功设为自启
+		查看supervisor的状态
+			ps -ef | grep supervisord访问127.0.0.1:9001
+			登录密码在supervisord.conf中,看每个节点是否能启动
+	
+vim：
+	shift+G 直接跳到最后一行
+	有时候弹出提示框，需要输入-R覆盖
 
-	pr
+Linux Service配置文件的编写:
+	通过编写Service配置文件，可以使用Linux的 systemctl 命令来达到管理服务的启动、自启动、停止 特定脚本、进程的目的
+	编写方法：
+	文件命名：xxxx.service
+	[Unit]
+	Description=Frp Server Service		#服务的描述信息
+	After=network.target				#其中network.target代表有网路，network-online.target代表一个连通着的网络。
+
+	[Service]
+	Type=simple
+	User=nobody
+	Restart=1 			# 如果这个服务停止了,那么就重启
+	RestartSec=5s
+	ExecStart=/usr/bin/frps -c /etc/frp/frps.ini #服务的启动命令
+
+	[Install]
+	WantedBy=multi-user.target
+	编写好了以后，把这个文件拷贝到/etc/systemd/system/ 目录，然后执行如下命令：
+	systemctl enable xxx 		#开启这个服务的开机自启
+	systemctl start xxx		#启动服务
+	systemctl stop xxx 		#停止服务
+	systemctl status xxx 		#服务的运行信息 

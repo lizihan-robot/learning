@@ -117,13 +117,46 @@ importlib.import_module():
 	params.C  #取出class C
 	params.C.c  #取出class C 中的c 方法
 
-
+tf.transformations():
+	#1.4 通过向量来求旋转矩阵
+	    v_m=tf.transformations.translation_matrix(v)
+	    print '通过向量来求旋转矩阵：'
+	    print v_m
+	#1.5 通过旋转矩阵来求向量
+	    m_v=tf.transformations.translation_from_matrix(m)
+	    print '通过旋转矩阵来求向量：'
+	    print  m_v
+	#第2部分，定义四元数
+	    print '第2部分，定义四元数'
+	#2.1 通过旋转轴和旋转角返回四元数
+	    axis_q=tf.transformations.quaternion_about_axis(0.123, (1, 0, 0))
+	    print '通过旋转轴和旋转角返回四元数：'
+	    print  axis_q
+	#2.2 返回四元数的共轭
+	    n_q=tf.transformations.quaternion_conjugate(q)
+	    print '返回四元数q的共轭：'
+	    print  n_q
+	#2.3 从欧拉角和旋转轴，求四元数
+	    o_q=tf.transformations.quaternion_from_euler(1, 2, 3, 'ryxz')
+	    print '从欧拉角和旋转轴，求四元数：'
+	    print  o_q    
+	#2.4 从旋转矩阵中，返回四元数
+	    m_q=tf.transformations.quaternion_from_matrix(m)
+	    print '从旋转矩阵中，返回四元数：'
+	    print  m_q 
+	#2.5 两个四元数相乘
+	    qxq=tf.transformations.quaternion_multiply(q,n_q)
+	    print '两个四元数相乘'
+	    print  qxq 
 
 
 如何分别实现TCP与UDP ?  socket.socket()创建的是基于哪一种协议的socket对象？
+	TCP:	socket.socket(socket.AF_INT, socket.SOCKET_STREAM)
+	UDP:	socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	默认的就是ivp4 TCP对象
 	
-
 TCP/IP协议的三次握手与四次挥手分别封装在socket对象的哪两个方法中？
+	connect()和accept()中欧给你
 
 
 conn.recv(1024)时如果缓存区数据长度不超过1024会如何？
@@ -136,10 +169,11 @@ conn.recv(1024)时如果缓存区数据长度不超过1024会如何？
 
 
 什么是长连接什么是短连接？
-
+	短连接就是建立一次会话，发送了数据后，就关掉会话
+	长连接就是建立了一次会话，发送数据一直保持连接，关闭会话
 
 需要长连接时， 什么条件下需要考虑断线重连， 什么时候不需要考虑？
-
+	异常断开的时候需要考虑断线重连，客户端或者服务端主动断开的时候不需要考虑
 
 如何实现TCP/IP协议服务器同时与多个客户端通信？
 	多线程或者socketserver
