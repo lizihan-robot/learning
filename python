@@ -220,4 +220,16 @@ conn.recv(1024)时如果缓存区数据长度不超过1024会如何？
 
 
 
+*args和**kwargs
+	*args是传入一个元祖 3,3,3,3 在内部拿到的*args=(3,3,3)
+	**kwargs传入的是字典 a="xx" kwargs = {a:"xx"}
 
+单例设计模式：
+	在类被调用的时候只实例化一次，多次实例化但是指向同一个内存地址
+	使用__new__()方法如果没有返回值，不会调用__init__()方法
+	class Player(object):
+		instance = None
+		def __new__(cls, *args, **kwargs):
+			if cls.instance is None:
+				cls.instance = super().__new__(cls)
+			return cls.instance	
