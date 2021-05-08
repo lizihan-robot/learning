@@ -19,7 +19,7 @@ socket:
 	auxOK := StrToVal(subString, instructionCode);
 
 机器人四元数：
-	q1, q2, q3, q4 = qw, qx, qy, qz
+	公司内部定义q1, q2, q3, q4 = qw, qx, qy, qz
 
 confdata:
 	指定机器人轴配置相关，VAR confdata conf_data:=[1, -1, 0, 0]
@@ -40,3 +40,5 @@ confdata:
 		象限-2	(-90)-(-180)度
 		象限-3	(-180)-(-270)度
 		象限-4	(-270)-(-360)度
+
+矩阵变换
