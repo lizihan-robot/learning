@@ -95,7 +95,7 @@ round():
 	四舍五如小数点后面1位数
 
 getattr():
-	getattr(object, name[, default])
+	getattr(object, name[, default]) 获取制定object中的方法
 	>>>class A(object):
         bar = 1 
 	>>> a = A()
@@ -116,7 +116,8 @@ importlib.import_module():
 	params.args #取出变量
 	params.C  #取出class C
 	params.C.c  #取出class C 中的c 方法
-
+		
+	
 tf.transformations():
 	#1.4 通过向量来求旋转矩阵
 	    v_m=tf.transformations.translation_matrix(v)
