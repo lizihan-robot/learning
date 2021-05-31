@@ -1,3 +1,11 @@
 ros相关：
-	.bashrc文件（隐藏文件）在根目录下，每打开一个terminal自动加载的一些参数和配置
-	.bashrc文件下添加$CODE_BASE=/home/xyz/xyz_app/ 环境变量
+	setup.bash:
+		setup.bash的作用是让一些ROS* 开头的命令可以使用
+		ros想要使用ros命令需要source一下setup.bash文件
+		$ source /opt/ros/melodic/setup.bash
+
+	bashrc:
+		.bashrc文件的作用，（隐藏文件）在根目录下，每打开一个terminal自动加载的一些参数和配置
+		.bashrc 文件下添加
+				：$CODE_BASE=/home/xyz/xyz_app/ 环境变量
+				：source /opt/ros/melodic/setup.bash
