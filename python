@@ -71,9 +71,9 @@ json:
 	load():
 		json文件读取
 	dumps():
-		将字典类型转化为json类型
+		dirt转化成str
 	loads():
-		将json类型转化为字典类型
+		str转化成dirt
 
 copy:
 	copy.copy():
