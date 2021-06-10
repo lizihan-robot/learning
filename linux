@@ -1,3 +1,6 @@
+netstat -apn | grep 41114 			linux查看端口号
+	tcp        0      0 127.0.0.1:41114         127.0.0.1:54322         ESTABLISHED 28106/python 
+kill -9 28106		杀死进程
 systemctl:
 	systemctl enable：设置下次开机时，后面接的 unit 会被启动。
 	systemctl disable：设置下次开机时，后面接的 unit 不会被启动。
