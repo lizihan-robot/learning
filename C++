@@ -1,3 +1,30 @@
+运行C++文件：
+	生成编译后的可执行文件
+		g++ -o test test.cpp -std=c++11
+	运行可执行文件	
+		./test
+
+使用gdb断点调试：
+	类似pdb 断点调试
+	gdb ./test
+	添加断点：
+		b 行数 		例如：b 5
+	
+vscode调试C++文件:
+    Ctrl+Shift+p 输入Cmake: Quick Ctart:
+    GCC :9.3.0
+    输入工作空间名字
+    选择包或者执行文件
+    注释 
+        # include(CTest)
+        # enable_testing()
+        # set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+        # set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+        # include(CPack)
+    add_executable：        
+        add_executable(yunsuan yunsuan.cpp) 添加需要生成的调试文件
+        vscode下方选择yunsuan
+        Ctrl+F5 点击yunsuan 开始调试
 
 输入
     int input = 0;
