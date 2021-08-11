@@ -82,3 +82,7 @@ vector
     需要#include <vecotr>和using namespace std;
     vector.push_back(80) 添加元素
     vector.size() 获取vector的长度
+
+template 泛型：
+	template<typename T> 只函数T返回的类型可以通过<>传输进去
+

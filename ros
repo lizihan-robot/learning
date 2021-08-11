@@ -11,6 +11,32 @@ ros相关：
 				：source /opt/ros/melodic/setup.bash
 	catkin_make:
 		在catkin_ws目录下，输入catkin_make
+		编译所有包		
 		将src目录下的文件导入到环境变量当中
+	rosrun:
+		rosrun包名下的指定可执行文件
+		如果文件需要rosrun的话需要chmod +x
+	
+	source:
+		source catkin_wc/devel/setup.bash
+		
 
-
+	添加msg和srv消息：
+		1.在包目录下package.xml文件中将一下文件注释取消
+			<build_depend>message_generation</build_depend>
+			<build_export_depend>message_generation</build_export_depend>
+			<exec_depend>message_runtime</exec_depend>
+		2.在CMakeLists.txt文件中
+			1.find_package(添加message_generation)
+			2.add_message_files(
+					  FILES
+					  GetCart.msg
+					)
+			3.add_service_files(
+					  FILES
+					  GetCart.srv
+					)
+			4.取消注释generate_messages(
+					  DEPENDENCIES
+					  std_msgs
+					)
