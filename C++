@@ -1,0 +1,88 @@
+运行C++文件：
+	生成编译后的可执行文件
+		g++ -o test test.cpp -std=c++11
+	运行可执行文件	
+		./test
+
+使用gdb断点调试：
+	类似pdb 断点调试
+	gdb ./test
+	添加断点：
+		b 行数 		例如：b 5
+	
+vscode调试C++文件:
+    Ctrl+Shift+p 输入Cmake: Quick Ctart:
+    GCC :9.3.0
+    输入工作空间名字
+    选择包或者执行文件
+    注释 
+        # include(CTest)
+        # enable_testing()
+        # set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+        # set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+        # include(CPack)
+    add_executable：        
+        add_executable(yunsuan yunsuan.cpp) 添加需要生成的调试文件
+        vscode下方选择yunsuan
+        Ctrl+F5 点击yunsuan 开始调试
+
+输入
+    int input = 0;
+    cin >> input;
+输出
+    cout << "input: =" << input <<endl;
+    printf("input:",input)
+
+sizeof
+    判断一个对象的内存大小
+    int month = 12;
+    printf("sizeof month is: ",sizeof(month))
+    输出结果:sizeof month is: 4
+
+与或非
+    && 与
+    || 或
+    !  非
+
+三元运算符
+    python的三元运算符表示
+        result = "A" if score>90 else "B"
+    C++的三元运算符表示
+        char result = score>90 ? "A":"B";
+
+::
+    域操作符,表明变量或者函数的作用域有点类似与python的.
+
+字符串的操作:
+    用+做拼接
+    用[]下标查找
+    用str.substr(0 , 4)截取
+    用str.find("this")查找
+    使用str.length()获取长度
+
+数组
+    int arr [5]; //未定义随机生成内容
+    数组一旦声明后长度是不可变的
+    获取数组的长度
+        int length = sizeof(arr)/sizeof(arr[0]);
+    遍历数组
+    1:
+    for(int s=0;s<lenth;s++)
+        {
+            printf("\n score%d=%d",s,scores[s]);
+        }
+    2:
+    for(int s : scores)
+        {
+            printf("\n score%d",s);
+        }
+
+vector
+    动态数组,数组的长度是不可变的,vector的长度是可变的
+    需要#include <vecotr>和using namespace std;
+    vector.push_back(80) 添加元素
+    vector.size() 获取vector的长度
+
+template 泛型：
+	template<typename T> 只函数T返回的类型可以通过<>传输进去
+

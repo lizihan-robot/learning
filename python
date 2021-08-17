@@ -1,3 +1,10 @@
+@abstractmethod:
+		声明抽象方法，通过继承来实现
+@classmethod:
+		classmethod修饰的函数不需要实例化，不需要self参数,需要将表示自身类的cls参数，可以直接调用类的属性，类的方法，实例化对象等
+		通过方法来调用类的属性
+@staticmethod:
+		调用此方法的时候不需要实例化类对象，可以直接通过A().a()来调用
 
 struct :
 		pack和unpack
@@ -20,14 +27,14 @@ epoll:
 		https://blog.csdn.net/wuchuanpingstone/article/details/82964256
 
 thread:
-		thread = Thread(targer=pmd,args=(s,))
-		thread.join()
+		t1 = threading.Thread(target=["需要启动的函数名字"],args=["函数需要传的参数"])
+				创建
+		t1.setDaemon(True)
+				把所有的子线程都变成了主线程的守护线程，主线程不等待该守护线程的执行完再去关闭
+		t1.start()
+				开启
+		t1.join()
 				优先将多线程运行完了之后才会运行后面的程序
-		thread.setDaemon(True/False)
-				如果某个子线程的daemon属性为False，主线程结束时会检测该子线程是否结束，如果该子线程还在运行，则主线程会等待它完成后再退出；
-				如果某个子线程的daemon属性为True，主线程运行结束时不对这个子线程进行检查而直接退出，同时所有daemon值为True的子线程将随主线程一起结束，而不论是否运行完成。
-				属性daemon的值默认为False，如果需要修改，必须在调用start()方法启动线程之前进行设置。
-				
 Queue：
 		from Queue import Queue,LifoQueue,PriorityQueue
 						# Queue是指先入先出
@@ -50,6 +57,9 @@ Queue：
 requests.request():
 		res = requests.request('GET', url, **kwargs)	#阻塞式返回，一直阻塞到有返回值或者timeout选项
 		print(res) 
+flask():
+		from flask import request
+		res= request.get_json()
 	
 Marshmallow:
 	序列化和反序列化操作
@@ -62,4 +72,226 @@ Marshmallow:
 		使用Schema中的load()方法实现 dict->obj，
 		使用Schema中的load()方法实现 string->obj，
 
+json:
+	dump():
+		json文件写入
+	load():
+		json文件读取
+	dumps():
+		dirt转化成str
+	loads():
+		str转化成dirt
 
+copy:
+	copy.copy():
+		还是指向之前的对象
+	copy.deepcopy():
+		copy出一个新的对象
+
+map():
+	map(func,msg)
+	将msg中所有的数传入func中，得到返回值
+	def square(x) :            # 计算平方数
+	...     return x ** 2
+	...
+	>>> map(square, [1,2,3,4,5])   # 计算列表各个元素的平方
+	[1, 4, 9, 16, 25]
+
+round():
+	round(3.1415926,1)
+	四舍五如小数点后面1位数
+
+getattr():
+	getattr(object, name[, default]) 获取制定object中的方法
+	>>>class A(object):
+        bar = 1 
+	>>> a = A()
+	>>> getattr(a, 'bar')        # 获取属性 bar 值
+	1
+	>>> getattr(a, 'bar2')       # 属性 bar2 不存在，触发异常
+	Traceback (most recent call last):
+	  File "<stdin>", line 1, in <module>
+	AttributeError: 'A' object has no attribute 'bar2'
+	>>> getattr(a, 'bar2', 3)    # 属性 bar2 不存在，但设置了默认值
+	3
+	>>>
+
+importlib.import_module():
+	params = importlib.import_module('b.c.c') #绝对导入
+	params_ = importlib.import_module('.c.c',package='b') #相对导入
+	# 对象中取出需要的对象
+	params.args #取出变量
+	params.C  #取出class C
+	params.C.c  #取出class C 中的c 方法
+		
+	
+tf.transformations():
+	#1.4 通过向量来求旋转矩阵
+	    v_m=tf.transformations.translation_matrix(v)
+	    print '通过向量来求旋转矩阵：'
+	    print v_m
+	#1.5 通过旋转矩阵来求向量
+	    m_v=tf.transformations.translation_from_matrix(m)
+	    print '通过旋转矩阵来求向量：'
+	    print  m_v
+	#第2部分，定义四元数
+	    print '第2部分，定义四元数'
+	#2.1 通过旋转轴和旋转角返回四元数
+	    axis_q=tf.transformations.quaternion_about_axis(0.123, (1, 0, 0))
+	    print '通过旋转轴和旋转角返回四元数：'
+	    print  axis_q
+	#2.2 返回四元数的共轭
+	    n_q=tf.transformations.quaternion_conjugate(q)
+	    print '返回四元数q的共轭：'
+	    print  n_q
+	#2.3 从欧拉角和旋转轴，求四元数
+	    o_q=tf.transformations.quaternion_from_euler(1, 2, 3, 'ryxz')
+	    print '从欧拉角和旋转轴，求四元数：'
+	    print  o_q    
+	#2.4 从旋转矩阵中，返回四元数
+	    m_q=tf.transformations.quaternion_from_matrix(m)
+	    print '从旋转矩阵中，返回四元数：'
+	    print  m_q 
+	#2.5 两个四元数相乘
+	    qxq=tf.transformations.quaternion_multiply(q,n_q)
+	    print '两个四元数相乘'
+	    print  qxq 
+
+lambda:
+	匿名函数lambda，指一类无需定义标识符的函数或者子程序。
+	lambda匿名函数的格式：冒号前是参数，可以有多个，用逗号隔开，冒号右边的为表达式。其实lambda返回值是一个函数的地址，也就是函数对象
+	a=lambda x:x*x
+	print(a)
+	print(a(3))
+	---->
+	<function <lambda> at 0x0000000002093E18>
+	9
+
+sort与sorted:
+	sort(): 是指列表中的一个方法，用于排序但是会改变原list
+		需要赋值的情况下
+		x = [1,3,4,5,6,2,7,9,8]
+		x.sort()
+		y = x
+	sorted():
+		将元素排列后传回一个新的list 不会改变原来的list
+		x = [1,3,4,5,6,2,7,9,8]
+		y = sorted(x)
+		print x
+		print y
+		----->
+		[1,3,4,5,6,2,7,9,8]
+		[1,2,3,4,5,6,7,8,9]
+
+
+生成器和迭代器：
+	迭代器有下标可以迭代，最简单如range()
+	生成器函数，函数内部加上yield关键字，普通函数是顺序执行，生成器函数是从yield部分继续执行
+		给一个开始的值，然后后面的值根据函数的需要自动生成
+
+
+
+
+
+
+
+
+
+*args和**kwargs
+	*args是传入一个元祖 3,3,3,3 在内部拿到的*args=(3,3,3)
+	**kwargs传入的是字典 a="xx" kwargs = {a:"xx"}
+
+单例设计模式：
+	在类被调用的时候只实例化一次，多次实例化但是指向同一个内存地址
+	使用__new__()方法如果没有返回值，不会调用__init__()方法
+	class Player(object):
+		instance = None
+		def __new__(cls, *args, **kwargs):
+			if cls.instance is None:
+				cls.instance = super().__new__(cls)
+			return cls.instance	
+
+
+如何分别实现TCP与UDP ?  socket.socket()创建的是基于哪一种协议的socket对象？
+	TCP:	socket.socket(socket.AF_INT, socket.SOCKET_STREAM)
+	UDP:	socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	默认的就是ivp4 TCP对象
+	
+TCP/IP协议的三次握手与四次挥手分别封装在socket对象的哪两个方法中？
+	connect()和accept()中欧给你
+
+
+conn.recv(1024)时如果缓存区数据长度不超过1024会如何？
+	如果大于1024返回1024,小于1024,是多少就返回多少
+
+当使用TCP/IP协议的socket链接断开时， 服务端与客户端分别调用recv和send的结果是什么？(服务端/客户端关闭， 选择服务端/客户端做后续测试， 测试recv/send, 排列组合一共8种情形需要分析)
+	
+
+在某种场景下， 使用TCP/IP协议的连接发送消息时,遵守的协议之一是用”$$”来分割两段消息， 如果用conn.recv(2)来接收消息， 请问如何保证在处理消息时（比如将消息写入文件中， 每条消息占一行）不重复， 不遗漏，不残缺， 并且及时？
+
+
+什么是长连接什么是短连接？
+	短连接就是建立一次会话，发送了数据后，就关掉会话
+	长连接就是建立了一次会话，发送数据一直保持连接，关闭会话
+
+需要长连接时， 什么条件下需要考虑断线重连， 什么时候不需要考虑？
+	异常断开的时候需要考虑断线重连，客户端或者服务端主动断开的时候不需要考虑
+
+如何实现TCP/IP协议服务器同时与多个客户端通信？
+	多线程或者socketserver
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*args和**kwargs
+	*args是传入一个元祖 3,3,3,3 在内部拿到的*args=(3,3,3)
+	**kwargs传入的是字典 a="xx" kwargs = {a:"xx"}
+
+单例设计模式：
+	在类被调用的时候只实例化一次，多次实例化但是指向同一个内存地址
+	使用__new__()方法如果没有返回值，不会调用__init__()方法
+	class Player(object):
+		instance = None
+		def __new__(cls, *args, **kwargs):
+			if cls.instance is None:
+				cls.instance = super().__new__(cls)
+			return cls.instance	
