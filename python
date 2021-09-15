@@ -1,3 +1,10 @@
+@abstractmethod:
+		声明抽象方法，通过继承来实现
+@classmethod:
+		classmethod修饰的函数不需要实例化，不需要self参数,需要将表示自身类的cls参数，可以直接调用类的属性，类的方法，实例化对象等
+		通过方法来调用类的属性
+@staticmethod:
+		调用此方法的时候不需要实例化类对象，可以直接通过A().a()来调用
 
 struct :
 		pack和unpack

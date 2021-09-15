@@ -19,7 +19,10 @@ ros相关：
 	
 	source:
 		source catkin_wc/devel/setup.bash
+<<<<<<< HEAD
 		
+=======
+>>>>>>> b6f8e4b7aa5e5f08596eb69f5cf53da6057548d7
 
 	添加msg和srv消息：
 		1.在包目录下package.xml文件中将一下文件注释取消
