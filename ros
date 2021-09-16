@@ -19,12 +19,29 @@ ros相关：
 	
 	source:
 		source catkin_wc/devel/setup.bash
-<<<<<<< HEAD
-		
-=======
->>>>>>> b6f8e4b7aa5e5f08596eb69f5cf53da6057548d7
 
-	添加msg和srv消息：
+	include: ros/ros.h存在波浪线
+		如果存在波浪线，编辑编译环境中的:c_cpp_properties.json    ------------->ctrl+shift+p 选择C/C++ Edit/Configurations(json)
+					{
+					    "configurations": [
+						{
+						    "name": "Linux",
+						    "includePath": [
+							"${workspaceFolder}/**",
+							"${workspaceFolder}/devel/include",
+							"/opt/ros/kinetic/include"
+						    ],
+						    "defines": [],
+						    "compilerPath": "/usr/bin/gcc",
+						    "cStandard": "gnu11",
+						    "cppStandard": "gnu++14",
+						    "intelliSenseMode": "linux-gcc-x64"
+						}
+					    ],
+					    "version": 4
+					}
+
+	添加srv消息：
 		1.在包目录下package.xml文件中将一下文件注释取消
 			<build_depend>message_generation</build_depend>
 			<build_export_depend>message_generation</build_export_depend>
@@ -43,3 +60,7 @@ ros相关：
 					  DEPENDENCIES
 					  std_msgs
 					)
+	添加msg消息：
+		1.add_executable()
+		2.target_link_libraries()
+		3.add_dependencies() ##c++才需要，编译的support
