@@ -2,7 +2,8 @@
 机器人运动学逆解：根据关节叫推算坐标系
 	根据D-H参数表求逆解
 	ABB逆解求值过程中有confdata指定轴相关的象限
-
+fanuc:
+	干涉角=J2+J3 = 真正的3轴角度
 ABB
 socket:
 	VAR socketdev serverSocket;

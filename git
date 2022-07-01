@@ -15,3 +15,7 @@ git :
 		git push origin <分支名>
 	拉取请求
 		git pull
+	rebase 
+		分支操作
+		-i
+		add
